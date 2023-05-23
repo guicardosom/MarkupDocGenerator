@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace DocumentFactory
 {
@@ -11,11 +12,13 @@ namespace DocumentFactory
      */
     public class HTMLDocument : IDocument
 	{
-        public List<HTMLElement> htmlElementList { get; private set; }
+        private List<HTMLElement> htmlElementList { get; set; }
+        private string filePath { get; set; }
 
-		public HTMLDocument()
+        public HTMLDocument(string path)
 		{
             htmlElementList = new List<HTMLElement>();
+            filePath = path;
         }
 
         public void AddElement(IElement e)
@@ -25,7 +28,16 @@ namespace DocumentFactory
 
         public bool RunDocument()
         {
-            throw new NotImplementedException();
+            try
+            {
+                System.Diagnostics.Process.Start("chrome.exe", filePath);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

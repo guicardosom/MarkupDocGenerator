@@ -6,17 +6,19 @@ namespace DocumentFactory
 {
     /**
 	 * Class Name: MarkdownDocument
-	 * Purpose: Creates an Markdown document
+	 * Purpose: Creates a Markdown document
 	 * Coder: Gui Miranda
 	 * Date: 05/22/2023
      */
     public class MarkdownDocument : IDocument
 	{
-        public List<MarkdownElement> mdElementList { get; private set; }
+        private List<MarkdownElement> mdElementList { get; set; }
+        private string filePath { get; set; }
 
-        public MarkdownDocument()
+        public MarkdownDocument(string path)
 		{
             mdElementList = new List<MarkdownElement>();
+            filePath = path;
         }
 
         public void AddElement(IElement e)
@@ -26,7 +28,16 @@ namespace DocumentFactory
 
         public bool RunDocument()
         {
-            throw new NotImplementedException();
+            try
+            {
+                System.Diagnostics.Process.Start("chrome.exe", filePath);
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
