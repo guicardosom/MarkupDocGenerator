@@ -49,6 +49,14 @@
     <Compile Include="MarkdownDocument.cs" />
     <Compile Include="HTMLElement.cs" />
     <Compile Include="MarkdownElement.cs" />
+    <Compile Include="HTMLHeader.cs" />
+    <Compile Include="HTMLImage.cs" />
+    <Compile Include="HTMLList.cs" />
+    <Compile Include="HTMLTable.cs" />
+    <Compile Include="MarkdownHeader.cs" />
+    <Compile Include="MarkdownImage.cs" />
+    <Compile Include="MarkdownList.cs" />
+    <Compile Include="MarkdownTable.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

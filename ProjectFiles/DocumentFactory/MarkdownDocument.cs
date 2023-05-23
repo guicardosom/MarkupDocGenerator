@@ -6,13 +6,13 @@ namespace DocumentFactory
 {
     /**
 	 * Class Name: MarkdownDocument
-	 * Purpose:
+	 * Purpose: Creates an Markdown document
 	 * Coder: Gui Miranda
 	 * Date: 05/22/2023
      */
     public class MarkdownDocument : IDocument
 	{
-        public List<MarkdownElement> mdElementList;
+        public List<MarkdownElement> mdElementList { get; private set; }
 
         public MarkdownDocument()
 		{

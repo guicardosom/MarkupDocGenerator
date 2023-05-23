@@ -5,13 +5,13 @@ namespace DocumentFactory
 {
     /**
 	 * Class Name: HTMLDocument
-	 * Purpose:
+	 * Purpose: Creates an HTML document
 	 * Coder: Gui Miranda
 	 * Date: 05/22/2023
      */
     public class HTMLDocument : IDocument
 	{
-        public List<HTMLElement> htmlElementList;
+        public List<HTMLElement> htmlElementList { get; private set; }
 
 		public HTMLDocument()
 		{

@@ -2,7 +2,7 @@
 {
     /**
 	 * Class Name: MarkdownElement
-	 * Purpose:
+	 * Purpose: Creates a template for Markdown elements
 	 * Coder: Gui Miranda
 	 * Date: 05/22/2023
      */

@@ -2,7 +2,7 @@
 {
     /**
 	 * Class Name: HTMLElement
-	 * Purpose:
+	 * Purpose: Creates a template for HTML elements
 	 * Coder: Gui Miranda
 	 * Date: 05/22/2023
      */
