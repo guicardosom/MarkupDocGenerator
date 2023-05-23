@@ -26,6 +26,8 @@ namespace DocumentFactory
             htmlElementList.Add(e as HTMLElement);
         }
 
+        //TODO -> RunDocument() should loop through all the elements in the list,
+        //call their toString methods, and write the output to an HTML or markdown file.
         public bool RunDocument()
         {
             try

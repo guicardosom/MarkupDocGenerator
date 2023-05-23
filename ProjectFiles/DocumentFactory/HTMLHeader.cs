@@ -10,13 +10,11 @@ namespace DocumentFactory
      */
     public class HTMLHeader : HTMLElement
 	{
-        private string headerIntensity { get; set; }
+        private string headerTag { get; set; }
         private string headerContent { get; set; }
 
-		public HTMLHeader(string intensity, string content)
+		public HTMLHeader(string content)
 		{
-            headerIntensity = intensity;
-            headerContent = content;
 		}
 
         /*Method Name: ToString
@@ -27,7 +25,7 @@ namespace DocumentFactory
         override
         public string ToString()
 		{
-			return $"<h{headerIntensity}>{headerContent}</h{headerIntensity}>";
+            return $"<{headerTag}>{headerContent}</{headerTag}>";
 		}
 	}
 }

@@ -10,11 +10,12 @@ namespace DocumentFactory
      */
     public class MarkdownImage : MarkdownElement
     {
-        private string imageContent { get; set; }
+        private string imagePath { get; set; }
+        private string imageTitle { get; set; }
+        private string imageAlt { get; set; }
 
         public MarkdownImage(string content)
         {
-            imageContent = content;
         }
 
         /*Method Name: ToString
@@ -25,7 +26,7 @@ namespace DocumentFactory
         override
         public string ToString()
         {
-            return $"![image]({imageContent})";
+            return $"![{imageAlt}]({imagePath} \"{imageTitle}\")";
         }
     }
 }

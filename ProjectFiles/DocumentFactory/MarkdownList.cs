@@ -14,10 +14,8 @@ namespace DocumentFactory
         private string listType { get; set; }
         private List<string> listContent { get; set; }
 
-        public MarkdownList(string type, string content)
+        public MarkdownList(string content)
         {
-            listType = type;
-            listContent.Add(content);
         }
 
         /*Method Name: ToString

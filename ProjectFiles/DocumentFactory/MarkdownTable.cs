@@ -13,9 +13,8 @@ namespace DocumentFactory
 	{
         private List<string>tableContent { get; set; }
 
-        public MarkdownTable(List<string>content)
+        public MarkdownTable(string content)
         {
-            tableContent = content;
         }
 
         /*Method Name: ToString

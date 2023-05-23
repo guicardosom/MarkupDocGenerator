@@ -13,9 +13,8 @@ namespace DocumentFactory
     {
         private List<string>tableContent { get; set; }
 
-        public HTMLTable(List<string>content)
+        public HTMLTable(string content)
         {
-            tableContent = content;
         }
 
         /*Method Name: ToString

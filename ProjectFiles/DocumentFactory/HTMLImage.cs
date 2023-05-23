@@ -10,11 +10,12 @@ namespace DocumentFactory
      */
     public class HTMLImage : HTMLElement
 	{
-        private string imageContent { get; set; }
+        private string imagePath { get; set; }
+        private string imageTitle { get; set; }
+        private string imageAlt { get; set; }
 
         public HTMLImage(string content)
         {
-            imageContent = content;
         }
 
         /*Method Name: ToString
@@ -25,7 +26,7 @@ namespace DocumentFactory
         override
         public string ToString()
         {
-            return $"<img src=\"{imageContent}\"></img>";
+            return $"<img src=\"{imagePath}\" title=\"{imageTitle}\" alt=\"{imageAlt}\"></img>";
         }
     }
 }

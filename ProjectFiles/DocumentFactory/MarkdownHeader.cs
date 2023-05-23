@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace DocumentFactory
 {
     /**
@@ -12,10 +13,8 @@ namespace DocumentFactory
         private int headerIntensity { get; set; }
         private string headerContent { get; set; }
 
-        public MarkdownHeader(int intensity, string content)
+        public MarkdownHeader(string content)
         {
-            headerIntensity = intensity;
-            headerContent = content;
         }
 
         /*Method Name: ToString

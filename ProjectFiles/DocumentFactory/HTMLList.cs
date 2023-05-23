@@ -14,10 +14,8 @@ namespace DocumentFactory
         private string listType { get; set; }
         private List<string>listContent { get; set; }
 
-        public HTMLList(string type, List<string>content)
+        public HTMLList(string content)
         {
-            listType = type;
-            listContent = content;
         }
 
         /*Method Name: ToString

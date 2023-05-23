@@ -57,6 +57,8 @@
     <Compile Include="MarkdownImage.cs" />
     <Compile Include="MarkdownList.cs" />
     <Compile Include="MarkdownTable.cs" />
+    <Compile Include="HTMLFactory.cs" />
+    <Compile Include="MarkdownFactory.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
