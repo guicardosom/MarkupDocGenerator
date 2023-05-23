@@ -15,7 +15,8 @@ namespace DocumentFactory
 
 		public HTMLDocument()
 		{
-		}
+            htmlElementList = new List<HTMLElement>();
+        }
 
         public void AddElement(IElement e)
         {

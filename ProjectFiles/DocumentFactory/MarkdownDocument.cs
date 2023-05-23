@@ -16,7 +16,8 @@ namespace DocumentFactory
 
         public MarkdownDocument()
 		{
-		}
+            mdElementList = new List<MarkdownElement>();
+        }
 
         public void AddElement(IElement e)
         {
