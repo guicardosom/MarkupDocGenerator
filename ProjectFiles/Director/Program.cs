@@ -6,6 +6,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
+using DocumentFactory;
+
 namespace Director
 {
     /**
@@ -19,23 +21,39 @@ namespace Director
         static void Main(string[] args)
         {
             string[] commands;
-            var list = File.ReadAllText("CreateDocumentScript.txt");
+            string list = File.ReadAllText("CreateDocumentScript.txt");
             commands = list.Split('#');
+
+            //Creates a placeholder HTMLFactory object
+            IDocumentFactory factory = HTMLFactory.GetInstance();
+            //Creates a new document object
+            IDocument document;
 
             foreach (var command in commands)
             {
-                var strippedCommand = Regex.Replace(command, @"\t|\n|\r", "");
-                var commandList = strippedCommand.Split(':');
+                string strippedCommand = Regex.Replace(command, @"\t|\n|\r", "");
+                string[] commandList = strippedCommand.Split(':');
                 switch (commandList[0])
                 {
                     case "Document":
-                        // Your document creation code goes here
+                        string[] docInfo = commandList[1].Split(';');
+
+                        if (docInfo[0] == "Markdown")
+                            factory = MarkdownFactory.GetInstance();
+
+                        document = factory.CreateDocument(docInfo[1]);
+
                         break;
                     case "Element":
-                        // Your element creation code goes here
+                        string elemType = commandList[1];
+                        string elemInfo = commandList[2];
+
+                        IElement elem = factory.CreateElement(elemType, elemInfo);
+
+                        document.AddElement(elem);
                         break;
                     case "Run":
-                        // Your document running code goes here
+                        document.RunDocument();
                         break;
                     default:
                         break;
