@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 
 namespace DocumentFactory
 {
@@ -11,10 +12,18 @@ namespace DocumentFactory
      */
     public class MarkdownTable : MarkdownElement
 	{
-        private List<string>tableContent { get; set; }
+        private List<string> tableHeaders { get; set; }
+        private List<string[]> tableRows { get; set; }
 
         public MarkdownTable(string content)
         {
+            string[] tableInfo = content.Split(';');
+
+            tableHeaders = new List<string>(tableInfo[0].Split('$'));
+
+            tableRows = new List<string[]>();
+            for (int i = 1; i < tableInfo.Length; i++)
+                tableRows.Add(tableInfo[i].Split('$'));
         }
 
         /*Method Name: ToString
@@ -25,8 +34,36 @@ namespace DocumentFactory
         override
         public string ToString()
         {
-            //TODO -> WILL HAVE TO REVIST THIS AFTER PARSING MARKDOWN TEXT FILE
-            return $"![image]({tableContent})";
+            //creates table header
+            string toReturn = "|";
+
+            int[] headersCharCount = new int[tableHeaders.Count];
+
+            for (int i = 0; i <= tableHeaders.Count; i++)
+            {
+                toReturn += $"{tableHeaders[i]}|";
+                headersCharCount[i] = tableHeaders[i].Length;
+            }
+
+            toReturn += "\n|";
+
+            foreach (int count in headersCharCount)
+            {
+                toReturn += ":";
+                for (int i = 1; i <= count; i++)
+                    toReturn += "-";
+                toReturn += ":|";
+            }
+
+            //creates table rows
+            foreach (string[] row in tableRows)
+            {
+                toReturn += "\n|";
+                for (int i = 1; i < row.Length; i++)
+                    toReturn += $"{row[i]}|";
+            }
+
+            return toReturn;
         }
     }
 }

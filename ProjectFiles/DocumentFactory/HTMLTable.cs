@@ -11,10 +11,18 @@ namespace DocumentFactory
      */
     public class HTMLTable : HTMLElement
     {
-        private List<string>tableContent { get; set; }
+        private List<string>tableHeaders { get; set; }
+        private List<string[]>tableRows { get; set; }
 
         public HTMLTable(string content)
         {
+            string[] tableInfo = content.Split(';');
+
+            tableHeaders = new List<string>(tableInfo[0].Split('$'));
+
+            tableRows = new List<string[]>();
+            for (int i = 1; i < tableInfo.Length; i++)
+                tableRows.Add(tableInfo[i].Split('$'));
         }
 
         /*Method Name: ToString
@@ -25,8 +33,24 @@ namespace DocumentFactory
         override
         public string ToString()
         {
-            //TODO -> WILL HAVE TO REVIST THIS AFTER PARSING MARKDOWN TEXT FILE
-            return $"<table>{tableContent}</table>";
+            //creates table header
+            string toReturn = "<table>\n<thead>\n<tr>\n";
+
+            foreach (string header in tableHeaders)
+                toReturn += $"<th>{header}</th>\n";
+
+            toReturn += "</tr>\n<thead>\n";
+
+            //creates table rows
+            toReturn += "<tbody>\n<tr>\n";
+
+            foreach (string[] row in tableRows)
+                for (int i = 1; i < row.Length; i++)
+                    toReturn += $"<td>{row[i]}</td>\n";
+
+            toReturn += "</tr>\n<tbody>\n";
+
+            return toReturn + "</table>";
         }
     }
 }
