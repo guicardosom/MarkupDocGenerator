@@ -18,8 +18,8 @@
         /*Method Name: RunDocument
          *Purpose: Runs the respective document (HTML or Markdown)
          *Accepts: Nothing
-         *Returns: True or False, depending if the action was successful or not
+         *Returns: Nothing
          */
-        bool RunDocument();
+        void RunDocument();
     }
 }

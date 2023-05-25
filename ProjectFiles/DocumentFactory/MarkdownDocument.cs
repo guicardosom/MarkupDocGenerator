@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Xml;
 
 namespace DocumentFactory
@@ -26,20 +27,26 @@ namespace DocumentFactory
             mdElementList.Add(e as MarkdownElement);
         }
 
-        //TODO -> RunDocument() should loop through all the elements in the list,
-        //call their toString methods, and write the output to an HTML or markdown file.
-        public bool RunDocument()
+        public void RunDocument()
         {
             try
             {
-                System.Diagnostics.Process.Start("chrome.exe", filePath);
-            }
-            catch(Exception)
-            {
-                return false;
-            }
+                string content = "";
 
-            return true;
+                foreach (MarkdownElement elem in mdElementList)
+                {
+                    Console.WriteLine(elem.ToString());
+                    content += elem.ToString() + "\n";
+                }
+
+                File.WriteAllText(filePath, content);
+
+                System.Diagnostics.Process.Start("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", filePath);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
