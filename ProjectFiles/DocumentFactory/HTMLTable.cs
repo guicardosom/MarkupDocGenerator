@@ -36,19 +36,23 @@ namespace DocumentFactory
             //creates table header
             string toReturn = "<table>\n<thead>\n<tr>\n";
 
-            foreach (string header in tableHeaders)
-                toReturn += $"<th>{header}</th>\n";
+            for (int i = 1; i < tableHeaders.Count; i++)
+                toReturn += $"<th>{tableHeaders[i]}</th>\n";
 
             toReturn += "</tr>\n<thead>\n";
 
             //creates table rows
-            toReturn += "<tbody>\n<tr>\n";
+            toReturn += "<tbody>\n";
 
             foreach (string[] row in tableRows)
+            {
+                toReturn += "<tr>\n";
                 for (int i = 1; i < row.Length; i++)
                     toReturn += $"<td>{row[i]}</td>\n";
+                toReturn += "</tr>\n";
+            }
 
-            toReturn += "</tr>\n<tbody>\n";
+            toReturn += "<tbody>\n";
 
             return toReturn + "</table>";
         }

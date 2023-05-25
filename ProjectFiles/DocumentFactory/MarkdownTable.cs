@@ -39,18 +39,18 @@ namespace DocumentFactory
 
             int[] headersCharCount = new int[tableHeaders.Count];
 
-            for (int i = 0; i <= tableHeaders.Count; i++)
+            for (int i = 1; i < tableHeaders.Count; i++)
             {
                 toReturn += $"{tableHeaders[i]}|";
-                headersCharCount[i] = tableHeaders[i].Length;
+                headersCharCount[i] = tableHeaders[i].Length - 2;
             }
 
             toReturn += "\n|";
 
-            foreach (int count in headersCharCount)
+            for (int i = 1; i < headersCharCount.Length; i++)
             {
                 toReturn += ":";
-                for (int i = 1; i <= count; i++)
+                for (int j = 1; j <= headersCharCount[i]; j++)
                     toReturn += "-";
                 toReturn += ":|";
             }
