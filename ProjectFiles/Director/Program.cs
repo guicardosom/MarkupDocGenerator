@@ -24,10 +24,10 @@ namespace Director
             string list = File.ReadAllText("CreateDocumentScript.txt");
             commands = list.Split('#');
 
-            //Creates a placeholder HTMLFactory object
-            IDocumentFactory factory = HTMLFactory.GetInstance();
+            //Creates an HTMLFactory object
+            IDocumentFactory factory = null;
             //Creates a new document object
-            IDocument document;
+            IDocument document = null;
 
             foreach (var command in commands)
             {
@@ -40,6 +40,8 @@ namespace Director
 
                         if (docInfo[0] == "Markdown")
                             factory = MarkdownFactory.GetInstance();
+                        else if (docInfo[0] == "Html")
+                            factory = HTMLFactory.GetInstance();
 
                         document = factory.CreateDocument(docInfo[1]);
 
