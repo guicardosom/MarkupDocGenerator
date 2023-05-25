@@ -16,6 +16,13 @@ namespace DocumentFactory
 
         public MarkdownList(string content)
         {
+            string[] listInfo = content.Split(';');
+
+            listType = listInfo[0];
+
+            listContent = new List<string>();
+            for (int i = 1; i < listInfo.Length; i++)
+                listContent.Add(listInfo[i]);
         }
 
         /*Method Name: ToString
