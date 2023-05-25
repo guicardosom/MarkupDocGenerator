@@ -16,6 +16,11 @@ namespace DocumentFactory
 
         public MarkdownImage(string content)
         {
+            string[] imageInfo = content.Split(';');
+
+            imagePath = imageInfo[0];
+            imageAlt = imageInfo[1];
+            imageTitle = imageInfo[2];
         }
 
         /*Method Name: ToString
