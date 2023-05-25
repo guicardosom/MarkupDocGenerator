@@ -40,7 +40,7 @@ namespace DocumentFactory
                 int count = 1;
                 foreach (string element in listContent)
                 {
-                    toReturn += $"{count}. {element}";
+                    toReturn += $"{count}. {element}\n";
                     count++;
                 }
             }
@@ -48,7 +48,7 @@ namespace DocumentFactory
             {
                 foreach (string element in listContent)
                 {
-                    toReturn += $"- {element}";
+                    toReturn += $"- {element}\n";
                 }
             }
 
