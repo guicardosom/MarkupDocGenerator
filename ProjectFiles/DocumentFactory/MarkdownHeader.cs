@@ -15,6 +15,10 @@ namespace DocumentFactory
 
         public MarkdownHeader(string content)
         {
+            string[] headerInfo = content.Split(';');
+
+            headerIntensity = Int32.Parse(headerInfo[0]);
+            headerContent = headerInfo[1];
         }
 
         /*Method Name: ToString

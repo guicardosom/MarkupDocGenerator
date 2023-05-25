@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Remoting.Contexts;
 
 namespace DocumentFactory
 {
@@ -10,12 +11,16 @@ namespace DocumentFactory
      */
     public class HTMLHeader : HTMLElement
 	{
-        private string headerTag { get; set; }
+        private int headerIntensity{ get; set; }
         private string headerContent { get; set; }
 
 		public HTMLHeader(string content)
 		{
-		}
+            string[] headerInfo = content.Split(';');
+
+            headerIntensity = Int32.Parse(headerInfo[0]);
+            headerContent = headerInfo[1];
+        }
 
         /*Method Name: ToString
          *Purpose: To output the header formatted as an HTML element
@@ -25,7 +30,7 @@ namespace DocumentFactory
         override
         public string ToString()
 		{
-            return $"<{headerTag}>{headerContent}</{headerTag}>";
+            return $"<h{headerIntensity}>{headerContent}</h{headerIntensity}>";
 		}
 	}
 }
