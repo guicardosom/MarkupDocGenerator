@@ -37,10 +37,7 @@ namespace DocumentFactory
 
                 File.WriteAllText(filePath, content);
 
-                //opens the file in the default browser
-                //because when I had force it open in chrome it would create multiple browser windows
-                System.Diagnostics.Process.Start(filePath);
-
+                System.Diagnostics.Process.Start("Google Chrome", filePath);
                 //System.Diagnostics.Process.Start("chrome.exe", filePath);
             }
             catch (Exception ex)
