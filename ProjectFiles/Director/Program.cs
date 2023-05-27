@@ -18,41 +18,31 @@ namespace Director
      */
     class Program
     {
+        //Creates an HTMLFactory object
+        private static IDocumentFactory factory = null;
+
+
         static void Main(string[] args)
         {
             string[] commands;
             string list = File.ReadAllText("CreateDocumentScript.txt");
             commands = list.Split('#');
 
-            //Creates an HTMLFactory object
-            IDocumentFactory factory = null;
-            //Creates a new document object
+            //Creates an IDocument object
             IDocument document = null;
 
             foreach (var command in commands)
             {
                 string strippedCommand = Regex.Replace(command, @"\t|\n|\r", "");
                 string[] commandList = strippedCommand.Split(':');
+
                 switch (commandList[0])
                 {
                     case "Document":
-                        string[] docInfo = commandList[1].Split(';');
-
-                        if (docInfo[0] == "Markdown")
-                            factory = MarkdownFactory.GetInstance();
-                        else if (docInfo[0] == "Html")
-                            factory = HTMLFactory.GetInstance();
-
-                        document = factory.CreateDocument(docInfo[1]);
-
+                        document = CreateDocument(commandList[1]);
                         break;
                     case "Element":
-                        string elemType = commandList[1];
-                        string elemInfo = commandList[2];
-
-                        IElement elem = factory.CreateElement(elemType, elemInfo);
-
-                        document.AddElement(elem);
+                        document.AddElement(CreateElement(commandList[1], commandList[2]));
                         break;
                     case "Run":
                         document.RunDocument();
@@ -61,6 +51,40 @@ namespace Director
                         break;
                 }
             }
+        }
+
+
+        /*Method Name: CreateDocument
+         *Purpose: Creates a new (HTML or Markdown) document
+         *Accepts: A string of commands, containing the type of document
+         *Returns: A new IDocument object
+         */
+        private static IDocument CreateDocument(string commands)
+        {
+            string[] docInfo = commands.Split(';');
+
+            if (docInfo[0] == "Markdown")
+                factory = MarkdownFactory.GetInstance();
+            else if (docInfo[0] == "Html")
+                factory = HTMLFactory.GetInstance();
+
+            return factory.CreateDocument(docInfo[1]);
+        }
+
+
+        /*Method Name: CreateElement
+         *Purpose: Creates a new (HTML or Markdown) element
+         *Accepts: string type, string props
+         *Returns: A new IElement object
+         */
+        private static IElement CreateElement(string type, string props)
+        {
+            IElement element = null;
+
+            if (factory != null)
+                element = factory.CreateElement(type, props);
+
+            return element;
         }
     }
 }
