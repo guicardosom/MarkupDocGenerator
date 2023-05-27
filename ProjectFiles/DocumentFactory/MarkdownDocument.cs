@@ -34,16 +34,17 @@ namespace DocumentFactory
                 string content = "";
 
                 foreach (MarkdownElement elem in mdElementList)
-                {
-                    Console.WriteLine(elem.ToString());
                     content += elem.ToString() + "\n";
-                }
 
                 File.WriteAllText(filePath, content);
 
-                System.Diagnostics.Process.Start("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome", filePath);
+                //opens the file in the default browser
+                //because when I had force it open in chrome it would create multiple browser windows
+                System.Diagnostics.Process.Start(filePath);
+
+                //System.Diagnostics.Process.Start("chrome.exe", filePath);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
