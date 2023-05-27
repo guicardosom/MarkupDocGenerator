@@ -1,1 +1,2 @@
 # MarkupDocGenerator
+A C# Program responsible for utilizing Software Design Patterns such as Singleton, Factory Methods and Abstract Factory, to create HTML and Markdown documents with their respective element's syntax, which is then run in your default browser.
